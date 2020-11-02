@@ -49,3 +49,14 @@ where caller_id in
  join Staff on Staff.staff_code = Issue.taken_by
  where Caller.first_name = 'Harry'
  order by call_date desc limit 1
+
+ -- 11.
+ -- NOT CORRECT
+ 
+ select
+ date_format(call_date, '%Y-%m-%d %H') as Hr,
+ count(*) as cc
+ from Issue join Staff on staff_code = assigned_to
+ join Level on Staff.level_code = Level.level_code
+ where date_format(call_date, '%Y-%m-%d') = '2017-08-12'
+ and manager is not null
